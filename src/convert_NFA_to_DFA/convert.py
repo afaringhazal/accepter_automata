@@ -165,7 +165,7 @@ def process_of_lambda_transition(transition_of_NFA, q0, qf, alphabet):
 
 
 def read_file():
-    with open("NFA2.txt") as fp:
+    with open("NFA_Input_2.txt") as fp:
         Lines = fp.readlines()
         count = 1
         alphabet: List[str] = []
@@ -228,3 +228,30 @@ print(f'DFA_alphabet : {DFA_alphabet}\n'
       f'final_state : {dfa_final_states}\n')
 print("==================")
 print(DFA_transition)
+
+f = open("DFA_Output_2.txt", "w")
+for alph in DFA_alphabet:
+    f.write(alph+" ")
+f.write("\n")
+for s_ in dfa_states:
+    for s in s_:
+        f.write(s.q)
+    f.write(" ")
+f.write("\n")
+for s in DFA_q0:
+    f.write(s.q+" ")
+f.write("\n")
+for s in dfa_final_states:
+    for dd in s:
+        f.write(dd.q)
+    f.write(" ")
+f.write("\n")
+for (state, sym), final_res in DFA_transition.items():
+    for s in state:
+        f.write(s.q)
+
+    f.write(" "+sym+" ")
+    for final in final_res:
+        f.write(final.q)
+    f.write("\n")
+f.close()
